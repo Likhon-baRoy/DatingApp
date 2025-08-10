@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Dating App</a>
+        <a class="navbar-brand">Dating App</a>
 
         @if (loggedIn) {
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -13,16 +13,14 @@
                 <li class="nav-item">
                     <a class="nav-link">Messages</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" (click)="logout()">Logout</a>
-                </li>
             </ul>
 
-            <div class="dropdown">
-                <a href="#" class="dropsown-toggle text-light">Welcome User!</a>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropwown-item">Edit Profile</a>
-                    <a href="#" class="dropwown-item" (click)="logout()">Logout</a>
+            <div dropdown class="dropdown">
+                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">Profile</a>
+                <div *dropdownMenu class="dropdown-menu">
+                    <a class="dropdown-item">Edit Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
                 </div>
             </div>
         } @else {
