@@ -22,4 +22,8 @@ export class Nav {
       error: error => console.log(error)
     })
   }
+
+  logout() {
+    this.loggedIn = false;
+  }
 }
