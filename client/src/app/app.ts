@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Nav } from "./nav/nav";
 import { Account } from './_services/account';
+import { Home } from "./home/home";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Nav],
+  imports: [RouterOutlet, Nav, Home],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
