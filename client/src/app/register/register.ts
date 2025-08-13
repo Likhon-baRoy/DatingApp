@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './register.css'
 })
 export class Register {
-  usersFromHomeComponent = input.required<any>()
+  usersFromHomeComponent = input.required<any>();
+  cancelRegister = output<boolean>();
   model: any = {}
 
   register() {
@@ -16,6 +17,6 @@ export class Register {
   }
 
   cancel() {
-    console.log('cancelled');
+    this.cancelRegister.emit(false);
   }
 }
