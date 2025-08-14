@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Account } from '../_services/account';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -13,6 +14,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class Nav {
   accountService = inject(Account);
   private router = inject(Router);
+  private toastr = inject(ToastrService);
   model: any = {};
 
   login() {
@@ -20,7 +22,7 @@ export class Nav {
       next: _ => {
         this.router.navigateByUrl('/members')
       },
-      error: error => console.log(error)
+      error: error => this.toastr.error(error.error)
     })
   }
 
