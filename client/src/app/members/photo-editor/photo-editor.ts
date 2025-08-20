@@ -1,13 +1,13 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
 import { Member } from '../../_models/member';
-import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { DecimalPipe, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import { Account } from '../../_services/account';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-photo-editor',
-  imports: [NgIf, NgFor, NgStyle, NgClass, FileUploadModule],
+  imports: [NgIf, NgFor, NgStyle, NgClass, FileUploadModule, DecimalPipe],
   templateUrl: './photo-editor.html',
   styleUrl: './photo-editor.css'
 })
@@ -15,7 +15,7 @@ export class PhotoEditor implements OnInit {
   private accountService = inject(Account);
   member = input.required<Member>();
   uploader?: FileUploader;
-  hasBaseDropzoneOver = false;
+  hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   memberChange = output<Member>();
 
@@ -24,7 +24,7 @@ export class PhotoEditor implements OnInit {
   }
 
   fileOverBase(e: any) {
-    this.hasBaseDropzoneOver = e;
+    this.hasBaseDropZoneOver = e;
   }
 
   initializeUploader() {
