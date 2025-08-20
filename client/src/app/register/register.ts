@@ -23,7 +23,7 @@ export class Register implements OnInit {
 
   initializeForm() {
     this.registerForm = new FormGroup({
-      username: new FormControl('Hello', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]),
       confirmPassword: new FormControl('', [Validators.required, this.matchValues('password')]),
     });
