@@ -1,6 +1,6 @@
 import { Component, inject, input, OnInit, output } from '@angular/core';
 import { Member } from '../../_models/member';
-import { DecimalPipe, NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import { Account } from '../../_services/account';
 import { environment } from '../../../environments/environment';
@@ -9,7 +9,7 @@ import { Members } from '../../_services/members';
 
 @Component({
   selector: 'app-photo-editor',
-  imports: [NgIf, NgFor, NgStyle, NgClass, FileUploadModule, DecimalPipe],
+  imports: [ FileUploadModule, DecimalPipe],
   templateUrl: './photo-editor.html',
   styleUrl: './photo-editor.css'
 })
