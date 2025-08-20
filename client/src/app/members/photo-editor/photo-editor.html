@@ -3,8 +3,10 @@
         <div class="col-2">
             <img src="{{photo.url}}" alt="photo of user" class="img-thumbnail mb-1">
             <div class="text-center">
-                <button class="btn btn-sm me-1" [disabled]="photo.isMain" (click)="setMainPhoto(photo)" [ngClass]="photo.isMain ? 'btn-success active': 'btn-outline-success'">Main</button>
-                <button [disabled]="photo.isMain" (click)="deletePhoto(photo)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-sm me-1" [disabled]="photo.isMain" (click)="setMainPhoto(photo)"
+                    [ngClass]="photo.isMain ? 'btn-success active': 'btn-outline-success'">Main</button>
+                <button [disabled]="photo.isMain" (click)="deletePhoto(photo)" class="btn btn-sm btn-danger"><i
+                        class="fa fa-trash"></i></button>
             </div>
         </div>
     }
@@ -12,9 +14,7 @@
 
 <!-- ng file upload -->
 <div class="row mt-5">
-
     <div class="col-md-3">
-
         <h3>Add Photos</h3>
 
         <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
@@ -50,23 +50,24 @@
             <div>
                 Queue progress:
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }"></div>
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader?.progress + '%' }">
+                    </div>
                 </div>
             </div>
-            <button type="button" class="btn btn-success btn-s" (click)="uploader?.uploadAll()"
-                [disabled]="!uploader?.getNotUploadedItems()?.length">
-                <span class="fa fa-upload"></span> Upload all
-            </button>
-            <button type="button" class="btn btn-warning btn-s" (click)="uploader?.cancelAll()"
-                [disabled]="!uploader?.isUploading">
-                <span class="fa fa-ban"></span> Cancel all
-            </button>
-            <button type="button" class="btn btn-danger btn-s" (click)="uploader?.clearQueue()"
-                [disabled]="!uploader?.queue?.length">
-                <span class="fa fa-trash"></span> Remove all
-            </button>
+            <div class="mt-2">
+                <button type="button" class="btn btn-success btn-s me-2" (click)="uploader?.uploadAll()"
+                    [disabled]="!uploader?.getNotUploadedItems()?.length">
+                    <span class="fa fa-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s me-2" (click)="uploader?.cancelAll()"
+                    [disabled]="!uploader?.isUploading">
+                    <span class="fa fa-ban"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s" (click)="uploader?.clearQueue()"
+                    [disabled]="!uploader?.queue?.length">
+                    <span class="fa fa-trash"></span> Remove all
+                </button>
+            </div>
         </div>
-
     </div>
-
 </div>
