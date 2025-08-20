@@ -1,28 +1,42 @@
-import { Component, inject, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, OnInit, output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Account } from '../_services/account';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
-export class Register {
+export class Register implements OnInit {
   private accountService = inject(Account);
   private toastr = inject(ToastrService);
   cancelRegister = output<boolean>();
-  model: any = {}
+  model: any = {};
+  registerForm: FormGroup = new FormGroup({});
+
+  ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+    this.registerForm = new FormGroup({
+      username: new FormControl(),
+      password: new FormControl(),
+      confirmPassword: new FormControl(),
+    })
+  }
 
   register() {
-    this.accountService.register(this.model).subscribe({
+    console.log(this.registerForm.value);
+    /* this.accountService.register(this.model).subscribe({
       next: response => {
         console.log(response);
         this.cancel();
       },
       error: error => this.toastr.error(error.error)
-    })
+    }) */
   }
 
   cancel() {
