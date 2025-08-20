@@ -46,4 +46,8 @@ export class MemberEdit implements OnInit {
       }
     })
   }
+
+  onMemberChange(event: Member) {
+    this.member = event;
+  }
 }
