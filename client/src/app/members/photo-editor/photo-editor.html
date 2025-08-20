@@ -1,7 +1,7 @@
 <div class="row">
     @for (photo of member().photos; track photo.id) {
         <div class="col-2">
-            <img src="{{photo.url}}" alt="photo of user" class="image-thumbnail mb-1">
+            <img src="{{photo.url}}" alt="photo of user" class="img-thumbnail mb-1">
             <div class="text-center">
                 <button class="btn btn-sm me-1" [disabled]="photo.isMain" (click)="setMainPhoto(photo)" [ngClass]="photo.isMain ? 'btn-success active': 'btn-outline-success'">Main</button>
                 <button [disabled]="photo.isMain" (click)="deletePhoto(photo)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
@@ -11,7 +11,7 @@
 </div>
 
 <!-- ng file upload -->
-<div class="row mt-2">
+<div class="row mt-5">
 
     <div class="col-md-3">
 
@@ -23,11 +23,7 @@
             Drop photos here
         </div>
 
-        Multiple
         <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
-
-        Single
-        <input type="file" ng2FileSelect [uploader]="uploader" />
     </div>
 
     <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
