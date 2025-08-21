@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { Account } from '../_services/account';
 import { ToastrService } from 'ngx-toastr';
 import { JsonPipe } from '@angular/common';
@@ -13,6 +13,7 @@ import { JsonPipe } from '@angular/common';
 export class Register implements OnInit {
   private accountService = inject(Account);
   private toastr = inject(ToastrService);
+  private fb = inject(FormBuilder);
   cancelRegister = output<boolean>();
   model: any = {};
   registerForm: FormGroup = new FormGroup({});
@@ -22,10 +23,10 @@ export class Register implements OnInit {
   }
 
   initializeForm() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required, this.matchValues('password')]),
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
 
     this.registerForm.controls['password'].valueChanges.subscribe({
