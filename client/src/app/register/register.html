@@ -4,44 +4,22 @@
 
     <div class="mb-3">
         <label style="margin-right: 10px;">I am a: </label>
-        <label class="form-check-label">
+        <label class="form-check-label me-2">
             <input type="radio" class="form-check-input" value="male" formControlName="gender"> Male
         </label>
         <label class="form-check-label">
-            <input type="radio" class="form-check-input" value="female" formControlName="gender"> female
+            <input type="radio" class="form-check-input" value="female" formControlName="gender"> Female
         </label>
     </div>
 
-    <app-text-input
-    [formControl]="$any(registerForm.controls['username'])"
-    [label]="'Username'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['knownAs'])"
-    [label]="'Known As'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['dateOfBirth'])"
-    [label]="'Date Of Birth'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['city'])"
-    [label]="'City'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['country'])"
-    [label]="'Country'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['password'])"
-    [label]="'Password'"
-    [type]="'password'"
-    ></app-text-input>
-    <app-text-input
-    [formControl]="$any(registerForm.controls['confirmPassword'])"
-    [label]="'Confirm Password'"
-    [type]="'password'"
-    ></app-text-input>
+    <app-text-input formControlName="username" [label]="'Username'" />
+    <app-text-input formControlName="knownAs" [label]="'Known As'" />
+    <app-date-picker formControlName="dateOfBirth" [label]="'Date of birth'" />
+    <app-text-input formControlName="city" [label]="'City'" />
+    <app-text-input formControlName="country" [label]="'Country'" />
+    <app-text-input formControlName="password" [label]="'Password'" [type]="'password'" />
+    <app-text-input formControlName="confirmPassword" [label]="'Confirm Password'"
+        [type]="'password'" />
 
     <div class="form-group text-center">
         <button class="btn btn-success me-2" type="submit">Register</button>
@@ -49,5 +27,7 @@
     </div>
 </form>
 
-<p>Form value: {{ registerForm.value | json }}</p>
-<p>Form status: {{ registerForm.status | json }}</p>
+<div class="mt-3">
+    <p>Form value: {{ registerForm.value | json }}</p>
+    <p>Form status: {{ registerForm.status | json }}</p>
+</div>

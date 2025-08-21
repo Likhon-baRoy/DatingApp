@@ -1,13 +1,14 @@
 import { Component, inject, OnInit, output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { Account } from '../_services/account';
 import { ToastrService } from 'ngx-toastr';
 import { JsonPipe } from '@angular/common';
 import { TextInput } from "../_forms/text-input/text-input";
+import { DatePicker } from "../_forms/date-picker/date-picker";
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, JsonPipe, TextInput],
+  imports: [ReactiveFormsModule, JsonPipe, TextInput, DatePicker],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
