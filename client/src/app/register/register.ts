@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { JsonPipe } from '@angular/common';
 import { TextInput } from "../_forms/text-input/text-input";
 import { DatePicker } from "../_forms/date-picker/date-picker";
+import { getFullYear } from 'ngx-bootstrap/chronos';
 
 @Component({
   selector: 'app-register',
@@ -19,9 +20,11 @@ export class Register implements OnInit {
   cancelRegister = output<boolean>();
   model: any = {};
   registerForm: FormGroup = new FormGroup({});
+  maxDate = new Date();
 
   ngOnInit(): void {
     this.initializeForm();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
   initializeForm() {
