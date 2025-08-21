@@ -3,10 +3,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { Account } from '../_services/account';
 import { ToastrService } from 'ngx-toastr';
 import { JsonPipe } from '@angular/common';
+import { TextInput } from "../_forms/text-input/text-input";
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, JsonPipe],
+  imports: [ReactiveFormsModule, JsonPipe, TextInput],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
