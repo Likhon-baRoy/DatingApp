@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { JsonPipe } from '@angular/common';
 import { TextInput } from "../_forms/text-input/text-input";
 import { DatePicker } from "../_forms/date-picker/date-picker";
-import { getFullYear } from 'ngx-bootstrap/chronos';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +17,12 @@ export class Register implements OnInit {
   private accountService = inject(Account);
   private toastr = inject(ToastrService);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   cancelRegister = output<boolean>();
   model: any = {};
   registerForm: FormGroup = new FormGroup({});
   maxDate = new Date();
+  validationError: string[] | undefined;
 
   ngOnInit(): void {
     this.initializeForm();
@@ -35,7 +37,7 @@ export class Register implements OnInit {
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
 
@@ -50,15 +52,36 @@ export class Register implements OnInit {
     }
   }
 
+  // getMaxDate() {
+  //   const today = new Date;
+  //   today.setFullYear(today.getFullYear() - 18);
+  //   return today.toISOString().split('T')[0];
+  // }
+
+  // register() {
+  //   this.accountService.register(this.model).subscribe({
+  //     next: _ => this.router.navigateByUrl('/members'),
+  //     error: error => this.validationError = error
+  //   })
+  // }
+
   register() {
-    console.log(this.registerForm.value);
-    /* this.accountService.register(this.model).subscribe({
-      next: response => {
-        console.log(response);
-        this.cancel();
-      },
-      error: error => this.toastr.error(error.error)
-    }) */
+    // Pass the raw form values, including the date object
+    const formValues = this.registerForm.getRawValue();
+
+    // You might need to format the dateOfBirth before sending it to the server
+    const dateOfBirth = new Date(formValues.dateOfBirth);
+    const formattedDate = dateOfBirth.toISOString().split('T')[0]; // Example: "YYYY-MM-DD"
+
+    const payload = {
+        ...formValues,
+        dateOfBirth: formattedDate
+    };
+
+    this.accountService.register(payload).subscribe({
+      next: _ => this.router.navigateByUrl('/members'),
+      error: error => this.validationError = error
+    })
   }
 
   cancel() {

@@ -1,16 +1,22 @@
 <div class="mb-3 form-floating">
-  <input class="form-control"
-    [class.is-invalid]="control.touched && control.invalid"
-    [formControl]="control"
-    placeholder={{label()}}
-    bsDatepicker
-    [bsConfig]="bsConfig"
-    [maxDate]="maxDate()"
-  >
-
-  <label>{{label()}}</label>
+  <div class="input-group">
+    <input
+      #dp="bsDatepicker"
+      type="text"
+      class="form-control"
+      [class.is-invalid]="control.touched && control.invalid"
+      [formControl]="control"
+      placeholder="{{label()}}"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+      [maxDate]="maxDate"
+    >
+    <span class="input-group-text" (click)="dp.toggle()" style="cursor: pointer;">
+      <i class="fa fa-calendar fa-lg text-primary"></i>
+    </span>
+  </div>
 
   @if (control.hasError('required') && control.touched) {
-  <div class="invalid-feedback text-start">{{label()}} is required</div>
+    <div class="invalid-feedback d-block text-start">{{label()}} is required</div>
   }
 </div>
