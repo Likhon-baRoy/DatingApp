@@ -2,6 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Members } from '../../_services/members';
 import { MemberCard } from "../member-card/member-card";
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { Account } from '../../_services/account';
+import { UserParams } from '../../_models/userParams';
 
 @Component({
   selector: 'app-member-list',
@@ -10,20 +12,20 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   styleUrl: './member-list.css'
 })
 export class MemberList implements OnInit {
+  private accountService = inject(Account);
   memberService = inject(Members);
-  pageNumber = 1;
-  pageSize = 5;
+  userParams = new UserParams(this.accountService.currentUser());
 
   ngOnInit(): void {
     if (!this.memberService.paginatedResult()) this.loadMembers();
   }
 
   loadMembers() {
-    this.memberService.getMembers(this.pageNumber, this.pageSize);
+    this.memberService.getMembers(this.userParams);
   }
 
   pageChanged(event: any) {
-    this.pageNumber = event.page;
+    this.userParams.pageNumber = event.page;
     this.loadMembers();
   }
 }
