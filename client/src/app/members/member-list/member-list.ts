@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Members } from '../../_services/members';
-import { Member } from '../../_models/member';
 import { MemberCard } from "../member-card/member-card";
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-member-list',
-  imports: [MemberCard],
+  imports: [MemberCard, PaginationModule],
   templateUrl: './member-list.html',
   styleUrl: './member-list.css'
 })
@@ -20,5 +20,10 @@ export class MemberList implements OnInit {
 
   loadMembers() {
     this.memberService.getMembers(this.pageNumber, this.pageSize);
+  }
+
+  pageChanged(event: any) {
+    this.pageNumber = event.page;
+    this.loadMembers();
   }
 }
