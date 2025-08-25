@@ -5,10 +5,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { Account } from '../../_services/account';
 import { UserParams } from '../../_models/userParams';
 import { FormsModule } from '@angular/forms';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @Component({
   selector: 'app-member-list',
-  imports: [MemberCard, PaginationModule, FormsModule],
+  imports: [MemberCard, PaginationModule, FormsModule, ButtonsModule],
   templateUrl: './member-list.html',
   styleUrl: './member-list.css'
 })

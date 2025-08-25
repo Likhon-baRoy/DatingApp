@@ -17,18 +17,28 @@
             </div>
             <div class="d-flex mx-2">
                 <label class="col-form-label">Show: </label>
-                <select name="gender" style="width: 130px;" class="form-select ms-1"
-                    [(ngModel)]="userParams.gender">
+                <select name="gender" style="width: 130px;" class="form-select ms-1" [(ngModel)]="userParams.gender">
                     @for (gender of genderList; track gender.value) {
-                        <option [value]="gender.value">
-                            {{gender.display}}
-                        </option>
+                    <option [value]="gender.value">
+                        {{gender.display}}
+                    </option>
                     }
                 </select>
             </div>
 
             <button class="btn btn-primary ms-1" type="submit">Apply filters</button>
             <button (click)="resentFilets()" class="btn btn-info ms-1" type="button">Reset filters</button>
+
+            <div class="col">
+                <div class="btn-group float-end">
+                    <button type="button" name="orderBy" (click)="loadMembers()" btnRadio="lastActive"
+                        class="btn btn-primary" [(ngModel)]="userParams.orderBy">Last Active</button>
+                </div>
+                <div class="btn-group float-end">
+                    <button type="button" name="orderBy" (click)="loadMembers()" btnRadio="created"
+                        class="btn btn-primary" [(ngModel)]="userParams.orderBy">Newest Members</button>
+                </div>
+            </div>
         </form>
     </div>
 
