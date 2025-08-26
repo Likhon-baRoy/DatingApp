@@ -32,7 +32,7 @@ export class MemberList implements OnInit {
     this.loadMembers();
   }
 
-  pageChanged(event: any) {
+  pageChanged(event: any): void {
     this.userParams.pageNumber = event.page;
     this.loadMembers();
   }
