@@ -40,7 +40,7 @@ public class LikesController(ILikesRepository likesRepository) : BaseApiControll
   [HttpGet("list")]
   public async Task<ActionResult<IEnumerable<int>>> GetCurrentUserLikeIds()
   {
-    return Ok(await likesRepository.GetCurrentUserLikedIds(User.GetHashCode()));
+    return Ok(await likesRepository.GetCurrentUserLikedIds(User.GetUserId()));
   }
 
   [HttpGet]
