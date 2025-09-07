@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit } from '@angular/core';
 import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message';
 import { TimeagoModule } from 'ngx-timeago';
+import { Member } from '../../_models/member';
 
 @Component({
   selector: 'app-member-messages',
@@ -9,18 +10,7 @@ import { TimeagoModule } from 'ngx-timeago';
   templateUrl: './member-messages.html',
   styleUrl: './member-messages.css'
 })
-export class MemberMessages implements OnInit {
-  private messageService = inject(MessageService);
+export class MemberMessages {
   username = input.required<string>();
-  messages: Message[] = [];
-
-  ngOnInit(): void {
-    this.loadMessages();
-  }
-
-  loadMessages() {
-    this.messageService.getMessageThread(this.username()).subscribe({
-      next: messages => this.messages = messages
-    })
-  }
+  messages = input.required<Message[]>();
 }
