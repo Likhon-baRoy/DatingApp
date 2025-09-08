@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Members } from '../../_services/members';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from '../../_models/member';
@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { MemberMessages } from "../member-messages/member-messages";
 import { Message } from '../../_models/message';
 import { MessageService } from '../../_services/message';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-member-detail',
@@ -16,8 +17,8 @@ import { MessageService } from '../../_services/message';
   templateUrl: './member-detail.html',
   styleUrl: './member-detail.css'
 })
-export class MemberDetail implements OnInit {
-  @ViewChild('memberTabs', {static: true}) memberTabs?: TabsetComponent;
+export class MemberDetail implements OnInit, AfterViewInit {
+  @ViewChild('memberTabs', { static: true }) memberTabs?: TabsetComponent;
   private messageService = inject(MessageService);
   private memberService = inject(Members);
   private route = inject(ActivatedRoute);
@@ -30,45 +31,34 @@ export class MemberDetail implements OnInit {
     this.route.data.subscribe({
       next: data => {
         this.member = data['member'];
-        this.member && this.member.photos.map(p =>{
-          this.images.push(new ImageItem({src: p.url, thumb: p.url}))
+        this.member && this.member.photos.map(p => {
+          this.images.push(new ImageItem({ src: p.url, thumb: p.url }))
         })
       }
     })
+  }
 
+  ngAfterViewInit(): void {
     this.route.queryParams.subscribe({
       next: params => {
-        params['tab'] && this.selectTab(params['tab'])
+        params['tab'] && this.selectTab(params['tab']);
       }
-    })
+    });
   }
 
-selectTab(heading: string) {
-  if (this.memberTabs) {
-    const messageTab = this.memberTabs.tabs.find(x => x.heading === heading);
-    if (messageTab) messageTab.active = true;
+  selectTab(heading: string) {
+    if (this.memberTabs) {
+      const messageTab = this.memberTabs.tabs.find(x => x.heading === heading);
+      if (messageTab) messageTab.active = true;
+    }
   }
-}
 
   onTabActivated(data: TabDirective) {
     this.activeTab = data;
     if (this.activeTab.heading === 'Messages' && this.messages.length === 0 && this.member) {
-      this.messageService.getMessageThread(this.member.username).subscribe({
-      next: messages => this.messages = messages
-    })
+      this.messageService.getMessageThread(this.member.username).pipe(take(1)).subscribe({
+        next: messages => this.messages = messages
+      });
     }
   }
-
-  // loadMember() {
-  //   const username = this.route.snapshot.paramMap.get('username');
-  //   if (!username) return;
-  //   this.memberService.getMember(username).subscribe({
-  //     next: member => {
-  //       this.member = member;
-  //       member.photos.map(p =>{
-  //         this.images.push(new ImageItem({src: p.url, thumb: p.url}))
-  //       })
-  //     }
-  //   })
-  // }
 }
