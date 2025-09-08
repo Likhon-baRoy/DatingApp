@@ -46,6 +46,10 @@ export class MemberDetail implements OnInit, AfterViewInit {
     });
   }
 
+  onUpdateMessages(event: Message) {
+    this.messages.push(event);
+  }
+
   selectTab(heading: string) {
     if (this.memberTabs) {
       const messageTab = this.memberTabs.tabs.find(x => x.heading === heading);
