@@ -18,6 +18,7 @@ export class Messages implements OnInit {
   container = 'Inbox';
   pageNumber = 1;
   pageSize = 5;
+  isOutbox = this.container === 'Outbox';
 
   ngOnInit(): void {
     this.loadMessages();
