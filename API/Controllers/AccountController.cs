@@ -29,7 +29,7 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
             Username = user.UserName,
             KnownAs = user.KnownAs,
             Gender = user.Gender,
-            Token = tokenService.CreateToken(user)
+            Token = await tokenService.CreateToken(user)
         };
     }
 
@@ -48,7 +48,7 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
             Username = user.UserName,
             KnownAs = user.KnownAs,
             Gender = user.Gender,
-            Token = tokenService.CreateToken(user),
+            Token = await tokenService.CreateToken(user),
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
         };
     }
