@@ -13,6 +13,7 @@ export class RolesModal {
   username = '';
   availableRoles: string[] = [];
   selectedRoles: string[] = [];
+  rolesUpdated = false;
 
   updateChecked(checkedValue: string) {
     if (this.selectedRoles.includes(checkedValue)) {
@@ -20,5 +21,10 @@ export class RolesModal {
     } else {
       this.selectedRoles.push(checkedValue);
     }
+  }
+
+  onSelectRoles() {
+    this.rolesUpdated = true;
+    this.bsModalRef.hide();
   }
 }
