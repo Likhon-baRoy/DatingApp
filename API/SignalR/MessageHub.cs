@@ -58,8 +58,10 @@ public class MessageHub(IMessageRepository messageRepository, IUserRepository us
       var group = GetGroupName(sender.UserName, recipient.UserName);
       await Clients.Group(group).SendAsync("NewMessage", mapper.Map<MessageDto>(message));
     }
-
-    throw new HubException("Failed to save message");
+    else
+    {
+      throw new HubException("Failed to save message");
+    }
   }
 
   private string GetGroupName(string caller, string? other)
