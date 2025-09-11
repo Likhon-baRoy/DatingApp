@@ -10,5 +10,15 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 export class RolesModal {
   bsModalRef = inject(BsModalRef);
   title = '';
-  list: string[] = [];
+  username = '';
+  availableRoles: string[] = [];
+  selectedRoles: string[] = [];
+
+  updateChecked(checkedValue: string) {
+    if (this.selectedRoles.includes(checkedValue)) {
+      this.selectedRoles = this.selectedRoles.filter(r => r !== checkedValue)
+    } else {
+      this.selectedRoles.push(checkedValue);
+    }
+  }
 }
