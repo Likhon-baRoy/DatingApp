@@ -1,0 +1,32 @@
+#+TITLE:        Full-Stack Dating Application
+#+AUTHOR:       Likhon Barai
+#+EMAIL:        likhonhere007@gmail.com
+#+DATE:         [2026-Mar-02 Mon]
+#+TAGS:         project blog .NET Angular WebAPI
+
+:PROPERTIES:
+#+OPTIONS:
+:END:
+
+
+* Table of Contents                                                     :toc:
+- [[#about][About]]
+- [[#implementation--features][Implementation & Features]]
+
+* About
+This application is build from scratch, I follow this tutorial: [[https://www.udemy.com/course/build-an-app-with-aspnet-core-and-angular-from-scratch/?couponCode=DAANGUPDATE16][Build an app with ASPNET Core and Angular from scratch]]  for learning and creating this application;
+
+* Implementation & Features
+-    Setting up the developer environment
+-    Creating the ASP.NET Core WebAPI and the Angular app using the DotNet CLI and the Angular CLI
+-    Adding a Client side login and register function to our Angular application
+-    Adding 3rd party components to add some pizzazz to the app
+-    Adding routing to the Angular application and securing routes.
+-    Using extension methods in .Net
+-    Adding Photo Upload functionality as well as a cool looking gallery in Angular
+-    Angular Template forms and Reactive forms and validation
+-    Paging, Sorting and Filtering
+-    Adding a Private Messaging system to the app
+-    Publishing the application to Azure free of charge
+-    Using SignalR for real time presence and live messaging between users
+-    Many more things as well
